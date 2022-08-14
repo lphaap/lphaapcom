@@ -1,2 +1,27 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	let name = 'lphaap.com';
+
+    let count = 0;
+    $: doubled = count * 2;
+
+    function handleClick() {
+		count += 1;
+	}
+
+    $: if (count >= 10) {
+        alert('count is dangerously high!');
+        count = 9;
+    }
+</script>
+
+<h1>Welcome to {name} - {doubled}</h1>
+
+<button on:click={handleClick}>
+	Clicked {count} {count === 1 ? 'time' : 'times'}
+</button>
+
+<style>
+    h1 {
+        background-color: purple;
+    }
+</style>
