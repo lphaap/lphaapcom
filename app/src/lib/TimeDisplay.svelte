@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { onMount } from 'svelte';
 
     let time = new Date();
@@ -28,12 +28,20 @@
         "December"
     ];
 
-    $: hours = time.getHours();
-    $: minutes = time.getMinutes();
-    $: seconds = time.getSeconds();
+    let parse_single_digit = (digit: number) => {
+        if(digit < 10) {
+            return "0" + digit;
+        }
+        return digit;
+    }
+
+    $: hours = parse_single_digit(time.getHours());
+    $: minutes = parse_single_digit(time.getMinutes());
+    $: seconds = parse_single_digit(time.getSeconds());
     $: day = parse_day[time.getDay()];
     $: month = parse_month[time.getMonth()];
     $: date = time.getDate();
+    $: year = time.getFullYear();
 
     onMount(() => {
         const tick = setInterval(() => {
@@ -46,7 +54,7 @@
     });
 </script>
 
-<p>{day}, {month} {date} {hours}:{minutes}:{seconds}</p>
+<p>{day}, {month} {date} {year}, {hours}:{minutes}:{seconds}</p>
 
 
 <style>
