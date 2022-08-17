@@ -1,27 +1,20 @@
 <script>
-	let name = 'lphaap.com';
-
-    let count = 0;
-    $: doubled = count * 2;
-
-    function handleClick() {
-		count += 1;
-	}
-
-    $: if (count >= 10) {
-        alert('count is dangerously high!');
-        count = 9;
-    }
+    import Logo from '$lib/Logo.svelte';
+    import TimeDisplay from '$lib/TimeDisplay.svelte';
 </script>
 
-<h1>Welcome to {name} - {doubled}</h1>
-
-<button on:click={handleClick}>
-	Clicked {count} {count === 1 ? 'time' : 'times'}
-</button>
+<div id="main-container" class="h-screen pl-3">
+    <a href="/wip">
+        <Logo/>
+    </a>
+    <div class="ml-1">
+        <TimeDisplay/>
+    </div>
+</div>
 
 <style>
-    h1 {
-        background-color: purple;
+    #main-container {
+        background-color: black;
     }
+
 </style>
