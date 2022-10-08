@@ -6,6 +6,7 @@
     import { spring } from 'svelte/motion';
 
     let show_eye = false;
+    let show_text = false;
 
     let eye_base: Element;
     let eye_center: Element;
@@ -15,6 +16,10 @@
     }
 
     $: eye_box_center = {x: 0, y: 0};
+
+    function handle_tick() {
+        show_text = !show_text;
+    }
 
     function set_eyebox_center() {
         let eye_box = eye_base.getBoundingClientRect();
