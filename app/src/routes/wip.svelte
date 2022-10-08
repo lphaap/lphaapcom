@@ -8,6 +8,10 @@
     }
 </script>
 
+<svelte:head>
+	<title>lphaap.com</title>
+</svelte:head>
+
 <svelte:window on:mousemove={handle_eye_movement} />
 
 <div id="main-container" class="h-screen">

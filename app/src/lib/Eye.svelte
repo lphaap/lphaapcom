@@ -2,7 +2,10 @@
     import eye_base_svg from "$lib/images/eye.svg";
     import eye_center_svg from "$lib/images/eye_center.svg";
     import { onMount } from "svelte";
+    import { fade } from 'svelte/transition';
     import { spring } from 'svelte/motion';
+
+    let show_eye = false;
 
     let eye_base: Element;
     let eye_center: Element;
@@ -23,8 +26,26 @@
         };
     }
 
+    function is_mouse_in_window(event: MouseEvent) {
+        if (
+            event.clientY <= 0
+            || event.clientX <= 0
+            || (event.clientX >= window.innerWidth || event.clientY >= window.innerHeight)
+        ) {
+            return false;
+        }
+        return true;
+    }
+
     export function eye_handler(event: MouseEvent) {
         set_eyebox_center();
+
+        if(!is_mouse_in_window(event)) {
+            show_eye = false;
+            return;
+        }
+
+        show_eye = true;
 
         // Calculate location towards the mouse
         let new_location = {
@@ -63,29 +84,29 @@
             src={eye_base_svg}
             alt="Eye"
         />
-        <img
-            id="eye-center"
-            bind:this={eye_center}
-            src={eye_center_svg}
-            style="
-                left: {eye_box_center.x}px;
-                top: {eye_box_center.y}px;
-                width: {eye_center_style.width}px;
-                height: {eye_center_style.height}px;
-                visibility: {eye_center_style.visibility};
-            "
-            alt="Eye"
-        />
+        {#if show_eye}
+            <img
+                id="eye-center"
+                bind:this={eye_center}
+                in:fade={{duration: 1000}}
+                out:fade={{duration: 500}}
+                src={eye_center_svg}
+                style="
+                    left: {eye_box_center.x}px;
+                    top: {eye_box_center.y}px;
+                    width: {eye_center_style.width}px;
+                    height: {eye_center_style.height}px;
+                    visibility: {eye_center_style.visibility};
+                "
+                alt="Eye"
+            />
+        {/if}
     </a>
 </div>
 
 <style>
     #eye-container {
         height: 35rem;
-    }
-
-    #eye {
-        max-height: 100%;
     }
 
     #eye-center {
