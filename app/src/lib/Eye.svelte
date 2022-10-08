@@ -11,8 +11,7 @@
     let eye_center: Element;
     let eye_center_style = {
         width: 45,
-        height: 45,
-        visibility: "hidden"
+        height: 45
     }
 
     $: eye_box_center = {x: 0, y: 0};
@@ -72,7 +71,6 @@
 
     onMount(() => {
         set_eyebox_center();
-        eye_center_style.visibility = "visible";
     });
 </script>
 
@@ -96,7 +94,6 @@
                     top: {eye_box_center.y}px;
                     width: {eye_center_style.width}px;
                     height: {eye_center_style.height}px;
-                    visibility: {eye_center_style.visibility};
                 "
                 alt="Eye"
             />
