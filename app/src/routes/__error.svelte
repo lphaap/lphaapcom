@@ -13,13 +13,11 @@
             <a href="/" class="mr-4">
                 <Logo/>
             </a>
-            <p id="frown" class="ml-4 mt-2 text-pink-500">
-                :(
-            </p>
         </div>
-        <p id="error-text" class="mt-2 text-pink-500">
-            Error: {$page.status}
+        <p class="error-text mt-2 text-pink-500">
+            Error: {$page.status ?? "Unknow"}
         </p>
+        <p class="error-text text-pink-500">(╯°□°）╯︵ ┻━┻</p>
 
 
 
@@ -44,11 +42,7 @@
         align-items: center;
     }
 
-    #error-text {
+    .error-text {
         font-size: 3.5rem;
-    }
-
-    #frown {
-        font-size: 2rem;
     }
 </style>
