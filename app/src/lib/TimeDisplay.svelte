@@ -59,7 +59,6 @@
 
 <style>
     p {
-        color: purple;
         font-weight: bold;
     }
 </style>
