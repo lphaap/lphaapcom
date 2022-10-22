@@ -54,7 +54,7 @@
     });
 </script>
 
-<p>{day}, {month} {date} {year}, {hours}:{minutes}:{seconds}</p>
+<p class="text-pink-500">{day}, {month} {date} {year}, {hours}:{minutes}:{seconds}</p>
 
 
 <style>

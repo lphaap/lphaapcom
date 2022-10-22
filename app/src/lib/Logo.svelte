@@ -1,4 +1,4 @@
-<pre>
+<pre class="text-pink-500">
 {`
  __          __
 |  | ______ |  |__ _____  _____  ______      ____  ____   _____
@@ -12,7 +12,6 @@
 <style>
      pre {
           line-height: 1.2;
-          color: purple;
           font-weight: bold;
      }
 </style>
