@@ -56,7 +56,6 @@
     }
 
     function on_rotate_enter() {
-        console.log("asdasd");
         if(typeof modes[current_mode].on_rotate_enter === 'function') {
             modes[current_mode].on_rotate_enter();
         }
