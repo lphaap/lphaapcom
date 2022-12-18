@@ -8,11 +8,11 @@ export default class EyeAdapter {
     main: EyeMain;
 
     on_rotate_enter() {
-        this.disable_components();
+        // On rotate enter
     }
 
     on_rotate_exit() {
-        this.enable_components();
+        // On rotate exit
     }
 
     on_navigation_hover(event: Event) {
