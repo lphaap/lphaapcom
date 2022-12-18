@@ -2,3 +2,51 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    @font-face {
+		font-family: 'Trispace';
+		src:
+            local('Trispace-Ligth'),
+            local('Trispace Light'),
+            url('/fonts/trispace/Trispace-Light.ttf');
+		font-weight: 300;
+		font-display: swap;
+	};
+    @font-face {
+		font-family: 'Trispace';
+		src:
+            local('Trispace'),
+            local('trispace'),
+			url('/fonts/trispace/Trispace-Regular.ttf');
+		font-weight: 400;
+		font-display: swap;
+	};
+    @font-face {
+		font-family: 'Trispace';
+		src:
+            local('Trispace-Medium'),
+            local('Trispace Medium'),
+            url('/fonts/trispace/Trispace-Medium.ttf');
+		font-weight: 500;
+		font-display: swap;
+	};
+    @font-face {
+		font-family: 'Trispace';
+		src:
+            local('Trispace-SemiBold'),
+            local('Trispace SemiBold'),
+            url('/fonts/trispace/Trispace-SemiBold.ttf');
+		font-weight: 600;
+		font-display: swap;
+	};
+    @font-face {
+		font-family: 'Trispace';
+		src:
+            local('Trispace-Bold'),
+            local('Trispace Bold'),
+            url('/fonts/trispace/Trispace-Bold.ttf');
+		font-weight: 700;
+		font-display: swap;
+	};
+};
