@@ -1,20 +1,19 @@
-# SVELTE KIT APP PROD DOCKER
+# Includes TS source files and a built JS /production folder
+FROM node:18.14.1-alpine AS development
 
-# Build stage 1
-FROM node:18.7.0-alpine3.16 AS builder
-WORKDIR /app
-COPY package-lock.json package.json ./
-RUN npm ci
+# Install dev tools
+RUN apk add sudo vim fish
+
+# Set node env to dev to include dev dependencies
+ENV NODE_ENV=development
+
+# Set workdir to the root folder code/
+WORKDIR /code
+
+# Copy files from local folder to dev container
 COPY . .
-RUN npm run build && npm prune --production
 
-# Build stage 2
-FROM node:18.7.0-alpine3.16
-USER node:node
-WORKDIR /app
-COPY --from=builder --chown=node:node /app/build ./build
-COPY --from=builder --chown=node:node /app/node_modules ./node_modules
-COPY --chown=node:node package.json .
-ENV PORT 5050
-EXPOSE ${PORT}
-CMD ["node","build"]
+# Install packages based on lock file
+RUN npm ci
+
+

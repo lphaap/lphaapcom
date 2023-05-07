@@ -1,3 +1,13 @@
-version: "3.9"
-
 services:
+
+  lphaap-com-dev:
+      container_name: lphaap-com-dev # Used in .env.development
+      image: lphaap-com-dev
+      ports:
+        - 8100:8100 # localhost:8100 (www)
+      env_file:
+        - ./.env.development
+      volumes:
+        - ./app/:/code/
+        - /code/node_modules/
+      entrypoint: [ "npm", "run", "dev", "--", "--host" ]
