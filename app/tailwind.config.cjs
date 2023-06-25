@@ -14,9 +14,7 @@ const config = {
     }
   },
 
-  plugins: [
-    require("daisyui")
-  ],
+  plugins: [],
 };
 
 module.exports = config;
