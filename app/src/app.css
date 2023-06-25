@@ -4,15 +4,6 @@
 @tailwind utilities;
 
 @layer base {
-	@font-face {
-		font-family: 'Kaushan Script', cursive;
-		src:
-            local('KaushanScript'),
-            local('KaushanScript'),
-			url('/fonts/kaushan/KaushanScript-Regular.ttf');
-		font-weight: 400;
-		font-display: swap;
-	};
     @font-face {
 		font-family: 'Trispace';
 		src:
