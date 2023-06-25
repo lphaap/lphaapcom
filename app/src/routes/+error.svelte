@@ -4,29 +4,30 @@
 </script>
 
 <svelte:head>
-	<title>lphaap.com</title>
+	<title>Error | lphaap.com</title>
 </svelte:head>
 
-<div id="main-container" class="h-screen p-4">
-    <div id="error-container" class=" pt-0 p-5 border border-pink-500 shadow-2xl shadow-pink-500">
-        <div id="logo-container">
-            <a href="/" class="mr-4">
-                <Logo/>
-            </a>
-        </div>
-        <p class="error-text mt-2 text-pink-500">
-            Error: {$page.status ?? "Unknow"}
+<div id="main-container" class="h-screen p-4 bg-lphaap-dark-blue">
+    <div id="error-container" class="p-5 border border-lphaap-light-grey flex flex-col">
+        <p id="logo" class="text-6xl text-white self-center">
+            <a href="/">lphaap.com</a>
         </p>
-        <p class="error-text text-pink-500">(╯°□°）╯︵ ┻━┻</p>
-
-
-
+        <div class="flex flex-col h-[400px] justify-center">
+            <p class="error-text mt-5">
+                Error: {$page.status ?? "Unknow"}
+            </p>
+            <p class="error-text">(╯°□°）╯︵ ┻━┻</p>
+        </div>
     </div>
 </div>
 
 <style>
     #main-container {
-        background-color: black;
+        font-family: 'Kaushan Script', cursive;
+        font-weight: 400;
+    }
+
+    #main-container {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -35,11 +36,6 @@
     #error-container {
         min-width: 800px;
         min-height: 600px;
-    }
-
-    #logo-container {
-        display: flex;
-        align-items: center;
     }
 
     .error-text {

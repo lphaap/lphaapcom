@@ -3,7 +3,6 @@
     import eye_center_svg from "$lib/images/eye_center.svg";
     import { onMount } from "svelte";
     import { fade } from 'svelte/transition';
-    import { spring } from 'svelte/motion';
 
     let enabled = false;
     let show_eye = false;
@@ -12,15 +11,11 @@
     let eye_base: Element;
     let eye_center: Element;
     let eye_center_style = {
-        width: 45,
-        height: 45
+        width: 100,
+        height: 100
     }
 
     $: eye_box_center = {x: 0, y: 0};
-
-    function handle_tick() {
-        show_text = !show_text;
-    }
 
     function set_eyebox_center() {
         if(!eye_base) {
@@ -79,47 +74,37 @@
         eye_box_center = new_location;
     }
 
-    export function disable_component() {
-        enabled = false;
-    }
-
-    export function enable_component() {
-        enabled = true;
-    }
-
     onMount(() => {
         set_eyebox_center();
     });
 </script>
 
-{#if enabled}
-    <div id="eye-container" class="p-5">
-        <a href="/">
+<div id="eye-container" class="p-5">
+    <a href="/">
+        <img
+            id="eye-base"
+            bind:this={eye_base}
+            src={eye_base_svg}
+            alt="Eye"
+        />
+        {#if show_eye}
             <img
-                id="eye-base"
-                bind:this={eye_base}
-                src={eye_base_svg}
+                id="eye-center"
+                bind:this={eye_center}
+                in:fade={{duration: 1000}}
+                out:fade={{duration: 500}}
+                src={eye_center_svg}
+                style="
+                    left: {eye_box_center.x}px;
+                    top: {eye_box_center.y}px;
+                    width: {eye_center_style.width}px;
+                    height: {eye_center_style.height}px;
+                "
                 alt="Eye"
             />
-            {#if show_eye}
-                <img
-                    id="eye-center"
-                    bind:this={eye_center}
-                    in:fade={{duration: 1000}}
-                    out:fade={{duration: 500}}
-                    src={eye_center_svg}
-                    style="
-                        left: {eye_box_center.x}px;
-                        top: {eye_box_center.y}px;
-                        width: {eye_center_style.width}px;
-                        height: {eye_center_style.height}px;
-                    "
-                    alt="Eye"
-                />
-            {/if}
-        </a>
-    </div>
-{/if}
+        {/if}
+    </a>
+</div>
 
 <style>
     #eye-center {
@@ -133,5 +118,6 @@
         align-items: center;
         flex-direction: column;
         height: 100%;
+        background-position: center;
     }
 </style>

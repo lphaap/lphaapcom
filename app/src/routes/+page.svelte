@@ -8,7 +8,7 @@
 </svelte:head>
 
 <div id="main-container" class="h-screen pl-3">
-    <a href="/wip">
+    <a href="/explore">
         <Logo/>
     </a>
     <div class="ml-1">
