@@ -57,7 +57,7 @@
 
 <svelte:window on:mousemove={on_mouse_move} />
 
-<div id="screen-container" class="h-screen bg-lphaap-dark-blue">
+<div id="screen-container" class="h-screen bg-lphaap-dark-blue text-lphaap-dark-grey">
     <div
         id="main-container"
         class="grid grid-cols-6 grid-rows-10 h-full"
