@@ -4,7 +4,7 @@
 </script>
 
 <svelte:head>
-	<title>lphaap.com</title>
+	<title>Welocome | lphaap.com</title>
 </svelte:head>
 
 <div id="main-container" class="h-screen pl-3">
