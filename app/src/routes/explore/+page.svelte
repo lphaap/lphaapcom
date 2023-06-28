@@ -3,37 +3,40 @@
     import rotate_shape from "$lib/images/rotate_shape.svg";
     import github_logo from "$lib/images/github.svg";
     import linkedin_logo from "$lib/images/linkedin.svg";    
-    import EyeMain from "$lib/explore/eye/eye_display.svelte";
-    import Eye from "$lib/explore/eye/Eye";
+    import EyeDisplay from "$lib/explore/eye/EyeDisplay.svelte";
+    import * as Wrappers from "$lib/explore/";
     import { spring } from 'svelte/motion';
     import { onMount } from "svelte";
     import { fly } from "svelte/transition";
+    import type { ExploreWrapper } from "$lib/explore/explore_wrapper";
 
     const nav_arrow_left_pos = spring(40);
     const nav_arrow_right_pos = spring(40);
     const rotate_shape_deg = spring(-45);
 
     let text_display = true
-    let current_mode = 0;
-    let eye_display = new Eye();
-    const modes = [
-        eye_display,
+
+    let current_wrapper: any;
+    const eye_wrapper = new Wrappers.EyeWrapper();
+    const modes: ExploreWrapper[] = [
+        eye_wrapper,
     ];
+
+    current_wrapper = modes[0]
 
     function swap_display(increment: number) {
         const available_mode_count = Object.keys(modes).length;
+        const current_mode = modes.findIndex(current_wrapper)
         const next_mode = Math.min(
             Math.max((current_mode + increment), 0),
             available_mode_count
         );
 
-        current_mode = next_mode;
+        current_wrapper = modes[next_mode];
     }
 
     function on_mouse_move(event: MouseEvent) {
-        if(typeof modes[current_mode].on_mouse_move === 'function') {
-            modes[current_mode].on_mouse_move(event);
-        }
+        current_wrapper.handle_mouse_move(event);
     }
 
     function on_bottom_box_enter() {
@@ -46,9 +49,7 @@
         rotate_shape_deg.set(-45);
     }
 
-    onMount(() => {
-        // FIXME: Mount starting component
-    });
+    onMount(() => {});
 </script>
 
 <svelte:head>
@@ -123,7 +124,7 @@
         </div>
 
         <div class="border border-lphaap-light-grey border-t-0 border-r-0 col-span-4 row-span-6" id="main-block">
-            <EyeMain bind:this={eye_display.display}></EyeMain>
+            <EyeDisplay bind:this={eye_wrapper.display}></EyeDisplay>
         </div>
 
         <div 
@@ -151,7 +152,7 @@
                     h-5/6
                 "
             >
-                <p>The exploration section contains a series of blog entries and projects I have worked on, enjoy!</p>
+                <p>{current_wrapper.description}</p>
             </div>
         
             <style>
@@ -184,14 +185,14 @@
                         class="text-7xl font-bold text-white uppercase"
                         in:fly={{ y: -25, duration: 600 }}
                     >
-                        Welcome visitor
+                        {current_wrapper.primary_title}
                     </h1>
                 {:else}
                     <h1 
                         class="text-7xl font-bold text-white uppercase"
                         in:fly={{ y: 25, duration: 600 }}
                     >
-                        Explore!
+                        {current_wrapper.secondary_title}
                     </h1>
                 {/if}
             </div>
