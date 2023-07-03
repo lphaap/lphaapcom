@@ -30,4 +30,4 @@ workflows:
       - production-build
       - production-deploy:
           requires:
-            - build
+          - build
