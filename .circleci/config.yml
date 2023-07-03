@@ -17,8 +17,7 @@ jobs:
           command: "npm run build"
   # SSH to server to ping deployment script
   production-deploy:
-    machine:
-      - enabled: true
+    executor: machine
     steps:
       - run:
           name: "Run SSH deploy"
