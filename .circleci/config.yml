@@ -10,7 +10,8 @@ jobs:
       - checkout:
           path: ~/lphaapcom/
       - run:
-          command: "ls"
+          name: "NPM Install"
+          command: "npm ci"
       - run:
           name: "Vite build"
           command: "npm run build"
