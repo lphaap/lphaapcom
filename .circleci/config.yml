@@ -18,7 +18,7 @@ jobs:
   # SSH to server to ping deployment script
   production-deploy:
     machine:
-      - image: ubuntu-2204
+      - image: ubuntu-2204:current
     steps:
       - run:
           name: "Run SSH deploy"
