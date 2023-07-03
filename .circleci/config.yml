@@ -25,13 +25,9 @@ jobs:
 
 workflows:
   # Run vite build on resources
-  build:
+  build-and-deploy:
     jobs:
       - production-build
-
-  # Run vite build on resources
-  deploy:
-    jobs:
-      requires:
-        - build
-      - production-deploy
+      - production-deploy:
+          requires:
+            - build
