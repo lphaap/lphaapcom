@@ -5,9 +5,10 @@ jobs:
   vite-build:
     docker:
       - image: cimg/node:19.3.0 # Node v.19.3.0 
-    #working_directory: ~/lphaapcom/app/
+    working_directory: ~/lphaapcom/app/
     steps:
-      - checkout
+      - checkout:
+        path: ~/lphaapcom/
       - run:
         command: "ls"
       - run:
