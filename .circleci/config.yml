@@ -20,8 +20,7 @@ jobs:
     steps:
       - run:
           name: "Run SSH deploy"
-          command: |
-            ssh DEPLOY_USER@$DEPLOY_HOST 'deploy'
+          command: "ssh DEPLOY_USER@$DEPLOY_HOST"
 
 
 workflows:
