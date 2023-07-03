@@ -4,7 +4,7 @@ executors:
   ubuntu-executor:
     machine:
       image: ubuntu-2004:202106-01
-  
+
   node-executor:
     docker:
       - image: cimg/node:19.3.0 # Node v.19.3.0
@@ -23,6 +23,7 @@ jobs:
       - run:
           name: "Vite build"
           command: "npm run build"
+
   # SSH to server to ping deployment script
   production-deploy:
     machine: ubuntu-executor
@@ -33,10 +34,9 @@ jobs:
 
 
 workflows:
-  # Run vite build on resources
   build-and-deploy:
     jobs:
       - production-build
       - production-deploy:
           requires:
-          - build
+          - production-build
