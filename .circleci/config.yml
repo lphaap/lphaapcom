@@ -19,8 +19,8 @@ jobs:
   production-deploy:
     steps:
       run:
-        name: "Run server deploy"
-        command: ssh admin@lphaap.com
+        name: "Run SSH deploy"
+        command: ssh DEPLOY_USER@$DEPLOY_HOST
 
 
 workflows:
@@ -30,6 +30,8 @@ workflows:
       - production-build
 
   # Run vite build on resources
-    deploy:
-      jobs:
-        - production-deploy
+  deploy:
+    requires:
+      - build
+    jobs:
+      - production-deploy
