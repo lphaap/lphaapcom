@@ -4,7 +4,7 @@ jobs:
   # Run vite build step via npm
   vite-build:
     docker:
-      - image: cimg/node:18.16.0 # Node v.18.16.0 
+      - image: cimg/node:19.3.0 # Node v.19.3.0 
     steps:
       - checkout
       - run:
