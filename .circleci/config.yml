@@ -29,12 +29,8 @@ jobs:
     executor: ubuntu-executor
     steps:
       - run:
-          command: echo $DEPLOY_USER
-      - run:
-          command: echo $DEPLOY_HOST
-      #- run:
-      #    name: "Run SSH deploy"
-      #    command: ssh $DEPLOY_USER@$DEPLOY_HOST
+          name: "Run SSH deploy"
+          command: ssh $DEPLOY_USER@$DEPLOY_HOST
 
 
 workflows:
