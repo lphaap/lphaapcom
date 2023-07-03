@@ -15,9 +15,21 @@ jobs:
       - run:
           name: "Vite build"
           command: "npm run build"
+  # SSH to server to ping deployment script
+  production-deploy:
+    steps:
+      run:
+        name: "Run server deploy"
+        command: ssh admin@lphaap.com
+
 
 workflows:
   # Run vite build on resources
-  build-workflow:
+  build:
     jobs:
       - production-build
+
+  # Run vite build on resources
+    deploy:
+      jobs:
+        - production-deploy
