@@ -4,32 +4,32 @@ jobs:
   # Run vite build step via npm
   production-build:
     docker:
-      - image: cimg/node:19.3.0 # Node v.19.3.0 
+      image: cimg/node:19.3.0 # Node v.19.3.0 
     working_directory: ~/lphaapcom/app/
     steps:
-      - checkout:
-          path: ~/lphaapcom/
-      - run:
-          name: "Install packages"
-          command: "npm ci"
-      - run:
-          name: "Vite build"
-          command: "npm run build"
+      checkout:
+        path: ~/lphaapcom/
+      run:
+        name: "Install packages"
+        command: "npm ci"
+      run:
+        name: "Vite build"
+        command: "npm run build"
   # SSH to server to ping deployment script
   production-deploy:
     machine:
-      - image: ubuntu-2204:current
+      image: ubuntu-2204:current
     steps:
-      - run:
-          name: "Run SSH deploy"
-          command: "ssh DEPLOY_USER@$DEPLOY_HOST"
+      run:
+        name: "Run SSH deploy"
+        command: "ssh DEPLOY_USER@$DEPLOY_HOST"
 
 
 workflows:
   # Run vite build on resources
   build-and-deploy:
     jobs:
-      - production-build
-      - production-deploy:
-          requires:
-          - build
+      production-build
+      production-deploy:
+        requires:
+          build
