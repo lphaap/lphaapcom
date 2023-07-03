@@ -26,7 +26,7 @@ jobs:
 
   # SSH to server to ping deployment script
   production-deploy:
-    machine: ubuntu-executor
+    executor: ubuntu-executor
     steps:
       - run:
           name: "Run SSH deploy"
