@@ -19,8 +19,8 @@ jobs:
   production-deploy:
     steps:
       - run:
-        name: "Run SSH deploy"
-        command: ssh DEPLOY_USER@$DEPLOY_HOST
+          name: "Run SSH deploy"
+          command: ssh DEPLOY_USER@$DEPLOY_HOST
 
 
 workflows:
