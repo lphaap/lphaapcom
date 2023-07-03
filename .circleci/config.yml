@@ -15,4 +15,4 @@ workflows:
   # Run vite build on resources
   build-workflow:
     jobs:
-      - build
+      - vite-build
