@@ -4,9 +4,7 @@
     import { onMount } from "svelte";
     import { fade } from 'svelte/transition';
 
-    let enabled = false;
     let show_eye = false;
-    let show_text = false;
 
     let eye_base: Element;
     let eye_center: Element;
@@ -32,9 +30,10 @@
 
     function is_mouse_in_window(event: MouseEvent) {
         if (
-            event.clientY <= 0
-            || event.clientX <= 0
-            || (event.clientX >= window.innerWidth || event.clientY >= window.innerHeight)
+            event.clientY <= 10 ||
+            event.clientX <= 10 ||
+            event.clientX >= window.innerWidth - 20 ||
+            event.clientY >= window.innerHeight - 20
         ) {
             return false;
         }
