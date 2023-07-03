@@ -30,7 +30,7 @@ jobs:
     steps:
       - run:
           name: "Run SSH deploy"
-          command: "ssh $DEPLOY_USER@$DEPLOY_HOST -vv"
+          command: "ssh $DEPLOY_USER@$DEPLOY_HOST -p $DEPLOY_PORT -vv"
 
 
 workflows:
