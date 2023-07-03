@@ -1,10 +1,18 @@
 version: 2.1
 
+executors:
+  ubuntu-executor:
+    machine:
+      image: ubuntu-2004:202106-01
+  
+  node-executor:
+    docker:
+      - image: cimg/node:19.3.0 # Node v.19.3.0
+
 jobs:
   # Run vite build step via npm
   production-build:
-    docker:
-      - image: cimg/node:19.3.0 # Node v.19.3.0
+    executor: node-executor
     working_directory: ~/lphaapcom/app/
     steps:
       - checkout:
@@ -17,8 +25,7 @@ jobs:
           command: "npm run build"
   # SSH to server to ping deployment script
   production-deploy:
-    machine:
-      - image: ubuntu-2204:current
+    machine: ubuntu-executor
     steps:
       - run:
           name: "Run SSH deploy"
