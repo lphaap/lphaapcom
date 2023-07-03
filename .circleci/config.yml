@@ -38,5 +38,4 @@ workflows:
     jobs:
       - production-build
       - production-deploy
-          requires:
-            - production-build
+          requires: production-build
