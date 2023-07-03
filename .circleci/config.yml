@@ -18,8 +18,7 @@ jobs:
   # SSH to server to ping deployment script
   production-deploy:
     steps:
-      machine: true
-      run:
+      - run:
         name: "Run SSH deploy"
         command: ssh DEPLOY_USER@$DEPLOY_HOST
 
