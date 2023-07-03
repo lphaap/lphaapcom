@@ -2,7 +2,7 @@ version: 2.1
 
 jobs:
   # Run vite build step via npm
-  vite-build:
+  production-build:
     docker:
       - image: cimg/node:19.3.0 # Node v.19.3.0 
     working_directory: ~/lphaapcom/app/
@@ -10,7 +10,7 @@ jobs:
       - checkout:
           path: ~/lphaapcom/
       - run:
-          name: "NPM Install"
+          name: "Install packages"
           command: "npm ci"
       - run:
           name: "Vite build"
@@ -20,4 +20,4 @@ workflows:
   # Run vite build on resources
   build-workflow:
     jobs:
-      - vite-build
+      - production-build
