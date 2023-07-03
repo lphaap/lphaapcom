@@ -30,8 +30,7 @@ jobs:
     steps:
       - run:
           name: "Run SSH deploy"
-          command: "ssh $DEPLOY_USER@$DEPLOY_HOST -p $DEPLOY_PORT -vv"
-
+          command: "ssh $DEPLOY_USER@$DEPLOY_HOST -p $DEPLOY_PORT"
 
 workflows:
   build-and-deploy:
@@ -40,3 +39,7 @@ workflows:
       - production-deploy:
           requires: 
             - production-build
+          filters:
+            branches:
+                only: 
+                  - master # Only run on master merge
