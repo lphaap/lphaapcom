@@ -17,7 +17,8 @@ jobs:
           command: "npm run build"
   # SSH to server to ping deployment script
   production-deploy:
-    executor: machine
+    machine:
+      - image: ubuntu-2204
     steps:
       - run:
           name: "Run SSH deploy"
