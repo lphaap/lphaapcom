@@ -3,7 +3,7 @@ version: 2.1
 executors:
   ubuntu-executor:
     machine:
-      image: ubuntu-2004:202106-01
+      image: ubuntu-2204:current
 
   node-executor:
     docker:
