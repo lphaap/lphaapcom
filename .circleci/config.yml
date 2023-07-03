@@ -8,9 +8,9 @@ jobs:
     working_directory: ~/lphaapcom/app/
     steps:
       - checkout:
-        path: ~/lphaapcom/
+          path: ~/lphaapcom/
       - run:
-        command: "ls"
+          command: "ls"
       - run:
           name: "Vite build"
           command: "npm run build"
