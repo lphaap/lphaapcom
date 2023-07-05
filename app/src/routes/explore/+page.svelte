@@ -334,6 +334,10 @@
 </div>
 
 <style>
+    :global(body) {
+		overflow: hidden;
+	}
+
     #screen-container {
         font-family: 'Trispace';
         font-weight: 300;

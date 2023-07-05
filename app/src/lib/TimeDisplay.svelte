@@ -4,13 +4,13 @@
     let time = new Date();
 
     const parse_day = [
+        "Sunday",
         "Monday",
         "Tuesday",
         "Wednesday",
         "Thursday",
         "Friday",
-        "Saturday",
-        "Sunday"
+        "Saturday"
     ];
 
     const parse_month = [
