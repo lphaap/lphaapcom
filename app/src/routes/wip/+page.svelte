@@ -38,8 +38,4 @@
         justify-content: center;
         align-items: center;
     }
-
-    .wip-text {
-        font-size: 3.5rem;
-    }
 </style>

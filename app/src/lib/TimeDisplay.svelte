@@ -54,11 +54,6 @@
     });
 </script>
 
-<p class="text-pink-500">{day}, {month} {date} {year}, {hours}:{minutes}:{seconds}</p>
-
-
-<style>
-    p {
-        font-weight: bold;
-    }
-</style>
+<div>
+    <p class="font-bold">{day}, {month} {date} {year}</p>
+</div>
