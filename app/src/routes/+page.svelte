@@ -46,16 +46,24 @@ $: render = ({ context, width, height }) => {
         const circle_radius = max_circle_radius - (circle_inrement * index)
 
         // Ball variables
-        const circle_velocity = Math.PI * 2 * (index + 1) / 900
-        const ball_to_circle_angle = (Math.PI + (circle_velocity * $t/25))
+        const ball_velocity = Math.PI * 2 * (index + 1) / 900
+        const ball_to_circle_angle = (Math.PI + (ball_velocity * $t/25))
         const ball_radius = screen_min * 0.008
         const ball_center_x = circle_center_x + circle_radius * Math.cos(ball_to_circle_angle)
         const ball_center_y = circle_center_y + circle_radius * Math.sin(ball_to_circle_angle)
 
-        const is_horizontal = Math.round(Math.cos(ball_to_circle_angle)) === 1
-        const is_vertical = Math.sin(ball_to_circle_angle).toFixed(1) === "0.0"
+        const is_ball_horizontal = Math.round(Math.cos(ball_to_circle_angle)) === 1
+        const is_ball_vertical = Math.sin(ball_to_circle_angle).toFixed(1) === "0.0"
 
-        if (is_vertical && is_horizontal) {
+        const outer_ball_velocity = Math.PI * 2 / 900
+        const outer_ball_to_circle_angle = (Math.PI + (outer_ball_velocity * $t/25))
+        const is_outer_ball_horizontal_neg = Math.round(Math.cos(outer_ball_to_circle_angle)) === -1
+        const is_outer_ball_vertical = Math.sin(outer_ball_to_circle_angle).toFixed(2) === "0.00"
+
+        if (
+            (is_ball_horizontal && is_ball_vertical) ||
+            (is_outer_ball_horizontal_neg && is_outer_ball_vertical)
+        ) {
             circles[index] = $t
         }
 
