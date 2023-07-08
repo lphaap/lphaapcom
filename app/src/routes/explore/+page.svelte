@@ -65,7 +65,9 @@
 <svelte:window on:mousemove={on_mouse_move} />
 
 <div id="screen-container" class="h-screen bg-lphaap-dark-blue text-lphaap-dark-grey">
+
     <MouseTracker bind:this={mouse_tracker} />
+
     <div
         id="main-container"
         class="grid grid-cols-6 grid-rows-10 h-full"

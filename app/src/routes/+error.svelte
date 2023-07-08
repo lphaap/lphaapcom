@@ -7,12 +7,12 @@
 	<title>Error | lphaap.com</title>
 </svelte:head>
 
-<div id="main-container" class="h-screen p-4 bg-lphaap-dark-blue">
-    <div id="error-container" class="p-5 border border-lphaap-light-grey flex flex-col">
-        <p id="logo" class="text-6xl text-white self-center">
+<div id="main-container" class="h-screen p-4 bg-lphaap-dark-blue text-white">
+    <div id="error-container" class="p-5 border border-lphaap-light-grey flex flex-col rounded">
+        <p id="logo" class="text-6xl text-white self-center mb-5">
             <a href="/">lphaap.com</a>
         </p>
-        <div class="flex flex-col h-[400px] justify-center">
+        <div class="flex flex-col max-h-[400px] justify-center">
             <p class="error-text mt-5">
                 Error: {$page.status ?? "Unknow"}
             </p>
@@ -34,8 +34,8 @@
     }
 
     #error-container {
-        min-width: 800px;
-        min-height: 600px;
+        max-width: 800px;
+        max-height: 600px;
     }
 
     .error-text {
