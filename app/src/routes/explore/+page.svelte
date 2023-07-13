@@ -54,8 +54,6 @@
         rotate_shape_deg.set(-45);
         mouse_tracker.shrink()
     }
-
-    onMount(() => {});
 </script>
 
 <svelte:head>
