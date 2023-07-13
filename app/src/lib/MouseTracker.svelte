@@ -60,7 +60,7 @@
             h: 14
         },
         {
-            damping: 1.5
+            damping: 1.3
         }
     );
 
