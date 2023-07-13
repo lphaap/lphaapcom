@@ -1,5 +1,5 @@
 <script lang='ts'>
-import { onMount } from 'svelte';
+import { onMount, afterUpdate } from 'svelte';
 
 import TimeDisplay from '$lib/TimeDisplay.svelte';
 import OrbSpinner from '$lib/OrbSpinner.svelte';
@@ -8,10 +8,16 @@ import RecordPlayerArm from '$lib/images/record_player_arm.svg'
 
 let screen_height: number
 let screen_width: number
+
 let title_height: number
 let title_width: number
+
 let time_height: number
 let time_width: number
+
+let arm_placeholder: Element
+let player_arm_center_x: number
+let player_arm_center_y: number
 
 let mouse_tracker: MouseTracker
 
@@ -19,8 +25,14 @@ $: screen_center_x = screen_width / 2
 $: screen_center_y = screen_height / 2
 
 const handle_window_resize = () => {
-    if(window.innerWidth < 1900) {
+    if(window.innerWidth < 1700) {
         window.location.href = '/explore'
+    }
+
+    if (arm_placeholder !== undefined) {
+        const placeholder_box = arm_placeholder.getBoundingClientRect()
+        player_arm_center_x = ((placeholder_box.left + placeholder_box.right) / 2) - (placeholder_box.width / 2) - 330
+        player_arm_center_y = ((placeholder_box.top + placeholder_box.bottom) / 2) - (placeholder_box.height / 2) - 45
     }
 }
 
@@ -91,23 +103,21 @@ onMount(() => {
         <TimeDisplay/>
     </div>
 
-
     <img
         alt="Record player arm"
-        class="absolute hidden min-[1800px]:block"
+        class="absolute"
         src="{RecordPlayerArm}"
         style="
-            left: {screen_center_x + 330}px;
-            top: 170px;
+            left: {player_arm_center_x}px;
+            top: {player_arm_center_y}px;
         "
     />
 
-    <div id="desktop-content-container" class="h-full w-full hidden min-[1800px]:flex flex-row justify-between">
+    <div id="desktop-content-container" class="h-full w-full flex flex-row justify-between">
         <div
             id="left-content-container"
-            class="w-full h-full flex flex-1 flex-col p-4 justify-around items-end"
+            class="flex flex-1 flex-col p-4 justify-around items-end"
         >
-
             <a
                 href="/explore"
                 on:mousemove={() => mouse_tracker.expand()}
@@ -153,18 +163,18 @@ onMount(() => {
         </div>
         <div
             id="center-content-container"
-            style="
-                width: {screen_height}px;
-                heigth: {screen_height}px;
-            "
+            class="w-[{screen_height}px] h-[{screen_height}px]"
         >
         </div>
         <div
             id="right-cotent-container"
-            class="md:w-full h-full flex flex-1 flex-col p-4 justify-around"
+            class="flex flex-1 flex-col p-4 justify-around"
         >
 
-            <div style="visibility: hidden;" class="w-[200px] h-[200px]" />
+            <div
+                class="w-[200px] h-[200px]"
+                bind:this={arm_placeholder}
+            />
 
             <a
                 href="/wip"
@@ -201,4 +211,9 @@ onMount(() => {
     :global(body) {
         overflow: hidden;
 	}
+
+    #center-content-container {
+        width: 100vh;
+    }
+
 </style>
