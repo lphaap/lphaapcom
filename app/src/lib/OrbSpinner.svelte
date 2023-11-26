@@ -1,4 +1,5 @@
 <script lang='ts'>
+
 import { Canvas, Layer, t, type Render } from 'svelte-canvas';
 
 export let spinner_height: number
