@@ -3,10 +3,9 @@
     import rotate_shape from "$lib/images/rotate_shape.svg";
     import github_logo from "$lib/images/github.svg";
     import linkedin_logo from "$lib/images/linkedin.svg";
-    import EyeDisplay from "$lib/explore/eye/EyeDisplay.svelte";
-    import * as Wrappers from "$lib/explore/";
+    import EyeDisplay from "$lib/explore/displays/EyeDisplay.svelte";
+    import * as Wrappers from "$lib/explore/wrappers";
     import { spring } from 'svelte/motion';
-    import { onMount } from "svelte";
     import { fly } from "svelte/transition";
     import type { ExploreWrapper } from "$lib/explore/explore_wrapper";
     import MouseTracker from "$lib/MouseTracker.svelte";
