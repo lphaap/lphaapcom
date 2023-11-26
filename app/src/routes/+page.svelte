@@ -140,7 +140,7 @@ onMount(() => {
             </a>
 
             <a
-                href="/wip"
+                href="https://blog.lphaap.com"
                 on:mousemove={() => mouse_tracker.expand()}
                 on:mouseleave={() => mouse_tracker.shrink()}
                 on:focus
