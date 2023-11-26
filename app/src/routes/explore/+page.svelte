@@ -115,7 +115,7 @@
                 on:mouseover={() => mouse_tracker.expand()}
                 on:mouseleave={() => mouse_tracker.shrink()}
                 on:focus
-                href="/wip"
+                href="https://blog.lphaap.com/"
                 class="uppercase"
             >
                 Blog
