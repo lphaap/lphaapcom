@@ -1,17 +1,17 @@
 <script lang="ts">
-    import brokering from "$lib/images/brokering.png";
+    import payment from "$lib/images/payment.png";
 </script>
 
-<div id="brokering-container" class="p-5">
+<div id="payment-container" class="p-5">
     <img
         class="rounded-2xl"
-        src={brokering}
-        alt="Brokering omalaina.fi"
+        src={payment}
+        alt="Payment solution"
     />
 </div>
 
 <style>
-    #brokering-container {
+    #payment-container {
         width: 100%;
         height: 100%;
         display: flex;
