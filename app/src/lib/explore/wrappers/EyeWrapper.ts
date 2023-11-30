@@ -3,7 +3,7 @@ import type { ExploreWrapper } from "../explore_wrapper";
 
 export class EyeWrapper implements ExploreWrapper {
     display: EyeDisplay;
-    description = 'The exploration section contains a series of blog entries and projects I have worked on, enjoy!';
+    description = 'The exploration section contains glimpses into my journey as a software developer, enjoy and explore!';
     primary_title = 'Welcome visitor';
     secondary_title = 'Explore!';
 

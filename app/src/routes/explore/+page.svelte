@@ -7,12 +7,13 @@
     import * as Wrappers from "$lib/explore/wrappers";
     import type { ExploreWrapper } from "$lib/explore/explore_wrapper";
     import EyeDisplay from "$lib/explore/displays/EyeDisplay.svelte";
+    import BrokerDisplay from "$lib/explore/displays/BrokerDisplay.svelte";
+    import PaymentDisplay from "$lib/explore/displays/PaymentDisplay.svelte";
 
     import { spring } from 'svelte/motion';
     import { fly } from "svelte/transition";
 
     import MouseTracker from "$lib/MouseTracker.svelte";
-    import BrokerDisplay from "$lib/explore/displays/BrokerDisplay.svelte";
 
     import emblaCarouselSvelte from 'embla-carousel-svelte'
 
@@ -32,8 +33,10 @@
     let current_wrapper_index = 0;
     const eye_wrapper = new Wrappers.EyeWrapper();
     const broker_wrapper = new Wrappers.BrokerWrapper();
+    const payment_wrapper = new Wrappers.PaymentWrapper();
     const wrappers: ExploreWrapper[] = [
         eye_wrapper,
+        payment_wrapper,
         broker_wrapper
     ];
 
@@ -199,17 +202,26 @@
             </a>
         </div>
 
-            <div class="
-                    border
-                    border-lphaap-light-grey
-                    border-t-0
-                    border-r-0
-                    col-span-4
-                    row-span-6
-                    embla
-                "
-                id="main-block"
-                use:emblaCarouselSvelte="{ { options: {loop: true }, plugins: [] }}" on:emblaInit="{on_carousel_init}"
+        <div class="
+                border
+                border-lphaap-light-grey
+                border-t-0
+                border-r-0
+                col-span-4
+                row-span-6
+            "
+            id="main-block"
+        >
+            <div
+                class="embla"
+                use:emblaCarouselSvelte="{{
+                    options: {
+                        loop: true
+                    },
+                    plugins: [
+                    ]
+                }}"
+                on:emblaInit="{on_carousel_init}"
             >
                 <div class="embla__container">
                     <div class="embla__slide">
@@ -218,7 +230,11 @@
                     <div class="embla__slide">
                         <BrokerDisplay bind:this={broker_wrapper.display}></BrokerDisplay>
                     </div>
+                    <div class="embla__slide">
+                        <PaymentDisplay bind:this={payment_wrapper.display}></PaymentDisplay>
+                    </div>
                 </div>
+            </div>
         </div>
 
         <div
@@ -382,13 +398,19 @@
 <style>
     .embla {
         overflow: hidden;
+        height: 100%;
+        width: 100%;
     }
     .embla__container {
         display: flex;
+        height: 100%;
+        width: 100%;
     }
     .embla__slide {
         flex: 0 0 100%;
         min-width: 0;
+        height: 100%;
+        width: 100%;
     }
 
     :global(body) {
