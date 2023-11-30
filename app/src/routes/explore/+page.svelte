@@ -3,13 +3,18 @@
     import rotate_shape from "$lib/images/rotate_shape.svg";
     import github_logo from "$lib/images/github.svg";
     import linkedin_logo from "$lib/images/linkedin.svg";
-    import EyeDisplay from "$lib/explore/eye/EyeDisplay.svelte";
-    import * as Wrappers from "$lib/explore/";
-    import { spring } from 'svelte/motion';
-    import { onMount } from "svelte";
-    import { fly } from "svelte/transition";
+
+    import * as Wrappers from "$lib/explore/wrappers";
     import type { ExploreWrapper } from "$lib/explore/explore_wrapper";
+    import EyeDisplay from "$lib/explore/displays/EyeDisplay.svelte";
+
+    import { spring } from 'svelte/motion';
+    import { fly } from "svelte/transition";
+
     import MouseTracker from "$lib/MouseTracker.svelte";
+    import BrokerDisplay from "$lib/explore/displays/BrokerDisplay.svelte";
+
+    import emblaCarouselSvelte from 'embla-carousel-svelte'
 
     const nav_arrow_left_pos = spring(40);
     const nav_arrow_right_pos = spring(40);
@@ -19,23 +24,46 @@
 
     let mouse_tracker: MouseTracker
 
-    let current_wrapper: any;
+    let carousel_controller: any
+    const on_carousel_init = (event: any) => {
+        carousel_controller = event.detail
+    }
+
+    let current_wrapper_index = 0;
     const eye_wrapper = new Wrappers.EyeWrapper();
-    const modes: ExploreWrapper[] = [
+    const broker_wrapper = new Wrappers.BrokerWrapper();
+    const wrappers: ExploreWrapper[] = [
         eye_wrapper,
+        broker_wrapper
     ];
 
-    current_wrapper = modes[0]
+    let current_wrapper: any;
+    current_wrapper = wrappers[current_wrapper_index]
 
-    function swap_display(increment: number) {
-        const available_mode_count = Object.keys(modes).length;
-        const current_mode = modes.findIndex(current_wrapper)
-        const next_mode = Math.min(
-            Math.max((current_mode + increment), 0),
-            available_mode_count
-        );
+    function next_display() {
+        carousel_controller.scrollNext();
+        change_display(-1);
+    }
 
-        current_wrapper = modes[next_mode];
+    function previous_display() {
+        carousel_controller.scrollPrev();
+        change_display(1);
+    }
+
+    function change_display(increment: number) {
+        const wrapper_count = Object.keys(wrappers).length;
+        const incremented_count = current_wrapper_index + increment
+        if (incremented_count >= wrapper_count) {
+           current_wrapper_index = incremented_count - wrapper_count
+        }
+        else if (incremented_count < 0) {
+            current_wrapper_index = incremented_count + wrapper_count
+        }
+        else {
+            current_wrapper_index = incremented_count
+        }
+
+        current_wrapper = wrappers[current_wrapper_index];
     }
 
     function on_mouse_move(event: MouseEvent) {
@@ -115,7 +143,7 @@
                 on:mouseover={() => mouse_tracker.expand()}
                 on:mouseleave={() => mouse_tracker.shrink()}
                 on:focus
-                href="/wip"
+                href="https://blog.lphaap.com/"
                 class="uppercase"
             >
                 Blog
@@ -171,8 +199,26 @@
             </a>
         </div>
 
-        <div class="border border-lphaap-light-grey border-t-0 border-r-0 col-span-4 row-span-6" id="main-block">
-            <EyeDisplay bind:this={eye_wrapper.display}></EyeDisplay>
+            <div class="
+                    border
+                    border-lphaap-light-grey
+                    border-t-0
+                    border-r-0
+                    col-span-4
+                    row-span-6
+                    embla
+                "
+                id="main-block"
+                use:emblaCarouselSvelte="{ { options: {loop: true }, plugins: [] }}" on:emblaInit="{on_carousel_init}"
+            >
+                <div class="embla__container">
+                    <div class="embla__slide">
+                        <EyeDisplay bind:this={eye_wrapper.display}></EyeDisplay>
+                    </div>
+                    <div class="embla__slide">
+                        <BrokerDisplay bind:this={broker_wrapper.display}></BrokerDisplay>
+                    </div>
+                </div>
         </div>
 
         <div
@@ -281,7 +327,7 @@
                     nav_arrow_left_pos.set(40);
                     mouse_tracker.shrink()
                 }}
-                on:click={() => {swap_display(-1);}}
+                on:click={() => previous_display()}
                 on:keydown
                 on:focus
             >
@@ -317,7 +363,7 @@
                     nav_arrow_right_pos.set(40);
                     mouse_tracker.shrink()
                 }}
-                on:click={() => {swap_display(1);}}
+                on:click={() => next_display()}
                 on:keydown
                 on:focus
             >
@@ -334,6 +380,17 @@
 </div>
 
 <style>
+    .embla {
+        overflow: hidden;
+    }
+    .embla__container {
+        display: flex;
+    }
+    .embla__slide {
+        flex: 0 0 100%;
+        min-width: 0;
+    }
+
     :global(body) {
 		overflow: hidden;
 	}

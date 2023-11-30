@@ -1,4 +1,4 @@
-import type EyeDisplay from "$lib/explore/eye/EyeDisplay.svelte";
+import type EyeDisplay from "$lib/explore/displays/EyeDisplay.svelte";
 import type { ExploreWrapper } from "../explore_wrapper";
 
 export class EyeWrapper implements ExploreWrapper {
