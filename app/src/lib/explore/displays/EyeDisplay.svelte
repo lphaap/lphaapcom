@@ -76,6 +76,8 @@
     onMount(() => {
         set_eyebox_center();
     });
+
+    // FIXME: Line 100, -125px is a manual fix due to top parent positioning funkiness
 </script>
 
 <div id="eye-container" class="p-5">
@@ -95,7 +97,7 @@
                 src={eye_center_svg}
                 style="
                     left: {eye_box_center.x}px;
-                    top: {eye_box_center.y}px;
+                    top: {eye_box_center.y + -125}px;
                     width: {eye_center_style.width}px;
                     height: {eye_center_style.height}px;
                 "
@@ -113,10 +115,10 @@
 
     #eye-container {
         display: flex;
+        height: 100%;
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        height: 100%;
         background-position: center;
     }
 </style>

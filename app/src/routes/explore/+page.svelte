@@ -199,17 +199,26 @@
             </a>
         </div>
 
-            <div class="
-                    border
-                    border-lphaap-light-grey
-                    border-t-0
-                    border-r-0
-                    col-span-4
-                    row-span-6
-                    embla
-                "
-                id="main-block"
-                use:emblaCarouselSvelte="{ { options: {loop: true }, plugins: [] }}" on:emblaInit="{on_carousel_init}"
+        <div class="
+                border
+                border-lphaap-light-grey
+                border-t-0
+                border-r-0
+                col-span-4
+                row-span-6
+            "
+            id="main-block"
+        >
+            <div
+                class="embla"
+                use:emblaCarouselSvelte="{{
+                    options: {
+                        loop: true
+                    },
+                    plugins: [
+                    ]
+                }}"
+                on:emblaInit="{on_carousel_init}"
             >
                 <div class="embla__container">
                     <div class="embla__slide">
@@ -219,6 +228,7 @@
                         <BrokerDisplay bind:this={broker_wrapper.display}></BrokerDisplay>
                     </div>
                 </div>
+            </div>
         </div>
 
         <div
@@ -382,13 +392,19 @@
 <style>
     .embla {
         overflow: hidden;
+        height: 100%;
+        width: 100%;
     }
     .embla__container {
         display: flex;
+        height: 100%;
+        width: 100%;
     }
     .embla__slide {
         flex: 0 0 100%;
         min-width: 0;
+        height: 100%;
+        width: 100%;
     }
 
     :global(body) {
