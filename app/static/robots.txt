@@ -2,4 +2,4 @@ User-agent: googlebot
 Disallow: /wip/
 
 sitemap: https://lphaap.com/sitemap-lphaap-com.txt
-sitemap: https://blog.lphaap.com/sitemap-lphaap-blog.txt
+sitemap: https://lphaap.com/sitemap-lphaap-blog.txt
