@@ -1,5 +1,5 @@
 <script lang='ts'>
-import { onMount, afterUpdate } from 'svelte';
+import { onMount } from 'svelte';
 
 import TimeDisplay from '$lib/TimeDisplay.svelte';
 import OrbSpinner from '$lib/OrbSpinner.svelte';
@@ -25,10 +25,15 @@ $: screen_center_x = screen_width / 2
 $: screen_center_y = screen_height / 2
 
 const handle_window_resize = () => {
-    if (arm_placeholder !== undefined) {
+    if (arm_placeholder != null) {
         const placeholder_box = arm_placeholder.getBoundingClientRect()
         player_arm_center_x = ((placeholder_box.left + placeholder_box.right) / 2) - (placeholder_box.width / 2) - 330
         player_arm_center_y = ((placeholder_box.top + placeholder_box.bottom) / 2) - (placeholder_box.height / 2) - 45
+
+        // Dumb fix for the y-cordinate exploding on re-navigating to the page
+        if (player_arm_center_y > 1000) {
+            player_arm_center_y = 184
+        }
     }
 }
 
@@ -36,10 +41,6 @@ onMount(() => {
     handle_window_resize()
 
     window.addEventListener('resize', handle_window_resize);
-
-    return () => {
-        window.removeEventListener('resize', handle_window_resize);
-    }
 });
 
 </script>
