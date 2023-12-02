@@ -25,10 +25,6 @@ $: screen_center_x = screen_width / 2
 $: screen_center_y = screen_height / 2
 
 const handle_window_resize = () => {
-    if(window.innerWidth < 1700) {
-        window.location.href = '/explore'
-    }
-
     if (arm_placeholder !== undefined) {
         const placeholder_box = arm_placeholder.getBoundingClientRect()
         player_arm_center_x = ((placeholder_box.left + placeholder_box.right) / 2) - (placeholder_box.width / 2) - 330
