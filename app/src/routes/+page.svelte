@@ -177,7 +177,7 @@ onMount(() => {
             />
 
             <a
-                href="/wip"
+                href="/about"
                 on:mousemove={() => mouse_tracker.expand()}
                 on:mouseleave={() => mouse_tracker.shrink()}
                 on:focus

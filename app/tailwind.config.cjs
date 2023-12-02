@@ -2,6 +2,9 @@ const config = {
   content: ["./src/**/*.{html,js,svelte,ts}"],
 
   theme: {
+    screens: {
+      '3xl': '1920px',
+    },
     extend: {
       gridTemplateRows: {
         '10': 'repeat(10, minmax(0, 1fr))',
