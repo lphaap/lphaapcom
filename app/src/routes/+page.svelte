@@ -49,7 +49,11 @@ onMount(() => {
 </script>
 
 <svelte:head>
-	<title>Welcome | lphaap.com</title>
+	<title>Welcome | Lassi Haapala</title>
+    <meta
+        name="description"
+        content="Welcome to Lassi Haapala's Home page. Explore my career and scout your future backend developer."
+    >
 </svelte:head>
 
 <svelte:window on:mousemove={mouse_tracker.handle_mouse_move} />
@@ -177,7 +181,7 @@ onMount(() => {
             />
 
             <a
-                href="/wip"
+                href="/about"
                 on:mousemove={() => mouse_tracker.expand()}
                 on:mouseleave={() => mouse_tracker.shrink()}
                 on:focus

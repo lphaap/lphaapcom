@@ -88,7 +88,11 @@
 </script>
 
 <svelte:head>
-	<title>Explore | lphaap.com</title>
+	<title>Explore | Lassi Haapala</title>
+    <meta
+        name="description"
+        content="Explore Lassi Haapala's career a this SvelteKit powered slide show. Read futher and improve your development with a synchronized blog entry."
+    >
 </svelte:head>
 
 <svelte:window on:mousemove={on_mouse_move} />
@@ -137,7 +141,7 @@
                 on:mouseover={() => mouse_tracker.expand()}
                 on:mouseleave={() => mouse_tracker.shrink()}
                 on:focus
-                href="/wip"
+                href="/about"
                 class="uppercase"
             >
                 About
