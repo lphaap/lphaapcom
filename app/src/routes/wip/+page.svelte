@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>WIP | lphaap.com</title>
+	<title>WIP | Lassi Haapala</title>
 </svelte:head>
 
 <div id="main-container" class="h-screen p-4 bg-lphaap-dark-blue">

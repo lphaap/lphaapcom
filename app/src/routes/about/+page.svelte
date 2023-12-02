@@ -12,7 +12,13 @@
 </script>
 
 <svelte:head>
-	<title>About | lphaap.com</title>
+	<title>About | Lassi Haapala</title>
+    <meta
+        name="description"
+        content="
+            Read further about Lassi Haapala's home page.
+        "
+    >
 </svelte:head>
 
 <svelte:window on:mousemove={on_mouse_move} />
